@@ -1,0 +1,217 @@
+.arrow {
+    --endX: 200px;
+    --endY: 100px;
+    --cap-size: 22px;
+    --stroke: 5px;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: var(--endX);
+    height: var(--endY);
+    margin: 50px;
+    border-width: var(--stroke);
+    border-style: solid;
+    border-color: transparent;
+    // background-color: salmon;
+}
+
+.arrow * {
+    box-sizing: border-box;
+}
+
+.cap {
+    position: absolute;
+    width: var(--cap-size);
+    height: var(--cap-size);
+    border-width: var(--stroke);
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 20%;
+}
+
+.arrow[data-slope="horizontal"] {
+    .cap {
+        top: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+        transform-origin: center center;
+        transform: rotate(45deg);
+    }
+    
+    &[data-start*='top']{
+        border-top-color:black; 
+    }
+    &[data-start*='bottom'] {
+        border-bottom-color: black;
+    }
+    
+
+    &[data-start*='left'] .cap[data-position="end"],
+    &[data-start*='right'] .cap[data-position="start"] {
+        right: calc(-1 * var(--stroke));
+        border-top-color: black;
+        border-right-color: black;
+    }
+    &[data-start*='left'] .cap[data-position="start"],
+    &[data-start*='right'] .cap[data-position="end"] {
+        left: calc(-1 * var(--stroke));
+        border-bottom-color: black;
+        border-left-color: black;   
+    }    
+    
+    &[data-start*='bottom'] .cap{
+        top: unset;
+        bottom: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+    }
+}
+
+.arrow[data-slope="vertical"] {
+    .cap {
+        left: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+        transform-origin: center center;
+        transform: rotate(-45deg);
+        // border: var(--stroke) solid red;
+    }
+    
+    &[data-start*='left']{
+         border-left-color:black; 
+    }
+    &[data-start*='right'] {
+         border-right-color: black;
+    }
+    
+
+    &[data-start*='top'] .cap[data-position="end"],
+    &[data-start*='bottom'] .cap[data-position="start"] {
+        bottom: calc(-1 * var(--stroke));
+        border-bottom-color: black;
+        border-left-color: black;
+    }
+    &[data-start*='top'] .cap[data-position="start"],
+    &[data-start*='bottom'] .cap[data-position="end"] {
+        top: calc(-1 * var(--stroke));
+        border-top-color: black;
+        border-right-color: black;   
+    }    
+    
+    &[data-start*='right'] .cap{
+        left: unset;
+        right: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+    }
+}
+
+.arrow[data-slope="diagonal"] {
+    
+
+    &[data-curve-type="concave"]{
+        .cap {
+            right: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+            bottom: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+            transform-origin: center center;
+            transform: rotate(45deg);
+            // border: var(--stroke) solid red;
+        }
+        &[data-start*='top'][data-start*="left"],
+        &[data-start*='bottom'][data-start*="right"]{
+            border-left-color: black; 
+            border-bottom-color: black;
+            border-radius: 0 0 0 100%;    
+        }
+
+        &[data-start*='top'][data-start*="left"] .cap[data-position="end"],
+        &[data-start*='bottom'][data-start*="right"] .cap[data-position="start"] {
+            // bottom:0;
+            right: calc(-1 * var(--stroke));
+            border-top-color: black;
+            border-right-color: black;
+        }
+        &[data-start*='top'][data-start*="left"] .cap[data-position="start"],
+        &[data-start*='bottom'][data-start*="right"] .cap[data-position="end"] {
+            top: calc( (var(--stroke) / 2) * -0.99);
+            left:calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+        
+            border-top-color: black;
+            border-left-color: black;
+        }
+
+        &[data-start*='bottom'][data-start*="left"],
+        &[data-start*='top'][data-start*="right"]{
+            border-bottom-color: black; 
+            border-right-color: black;
+            border-radius:  0 0 100% 0;    
+        }
+        &[data-start*='bottom'][data-start*="left"] .cap[data-position="end"],
+        &[data-start*='top'][data-start*="right"] .cap[data-position="start"] {
+            top:calc(-1 * var(--stroke));
+            right:calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+            border-top-color: black;
+            border-left-color: black;
+        }
+        &[data-start*='bottom'][data-start*="left"] .cap[data-position="start"],
+        &[data-start*='top'][data-start*="right"] .cap[data-position="end"] {
+            bottom: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+            left:calc(-1 * var(--stroke));
+        
+            border-bottom-color: black;
+            border-left-color: black;
+        }
+
+    }
+
+    &[data-curve-type="convex"]{
+        .cap {
+            right: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+            bottom: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+            transform-origin: center center;
+            transform: rotate(45deg);
+            // border: var(--stroke) solid red;
+        }
+        &[data-start*='top'][data-start*="left"],
+        &[data-start*='bottom'][data-start*="right"]{
+            border-top-color: black; 
+            border-right-color: black;
+            border-radius: 0 100% 0 0;    
+        }
+        &[data-start*='top'][data-start*="left"] .cap[data-position="end"],
+        &[data-start*='bottom'][data-start*="right"] .cap[data-position="start"] {
+            bottom: calc(-1 * var(--stroke));
+            right: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+
+            border-bottom-color: black;
+            border-right-color: black;
+        }
+        &[data-start*='top'][data-start*="left"] .cap[data-position="start"],
+        &[data-start*='bottom'][data-start*="right"] .cap[data-position="end"] {
+            left: calc(-1 * var(--stroke));
+            top: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+        
+            border-bottom-color: black;
+            border-left-color: black;
+        }
+
+        &[data-start*='bottom'][data-start*="left"],
+        &[data-start*='top'][data-start*="right"]{
+            border-top-color: black; 
+            border-left-color: black;
+            border-radius:  100% 0 0 0 ;    
+        }
+        &[data-start*='bottom'][data-start*="left"] .cap[data-position="end"],
+        &[data-start*='top'][data-start*="right"] .cap[data-position="start"] {
+            right: calc(-1 * var(--stroke));
+            top: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+
+            border-top-color: black;
+            border-right-color: black;
+        }
+        &[data-start*='bottom'][data-start*="left"] .cap[data-position="start"],
+        &[data-start*='top'][data-start*="right"] .cap[data-position="end"] {
+            bottom: calc(-1 * var(--stroke));
+            left: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);        
+            border-bottom-color: black;
+            border-right-color: black;
+        }
+    }   
+}
+
+
+
+
+
