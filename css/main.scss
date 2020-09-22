@@ -1,18 +1,27 @@
 .arrow {
-    --endX: 200px;
-    --endY: 100px;
-    --cap-size: 22px;
-    --stroke: 5px;
+    font-size: 14px;
+    --endX: 20em;
+    --endY: 10em;
+    --cap-size: 4em;
+    --stroke: .7em;
+    --cap-radius: 0.3em;
     position: relative;
-    top: 10px;
-    left: 10px;
     width: var(--endX);
     height: var(--endY);
-    margin: 50px;
-    border-width: var(--stroke);
     border-style: solid;
     border-color: transparent;
+    // border-radius: 1.3em;
     // background-color: salmon;
+    margin: 50px;
+
+    --isCapInTop: 0;
+    --isCapInBottom: 0;
+    --isCapInLeft: 0;
+    --isCapInRight: 0;
+    --isCapPointingUp: 0;
+    --isCapPointingDown: 0;
+    --isCapPointingLeft: 0;
+    --isCapPointingRight: 0;
 }
 
 .arrow * {
@@ -26,192 +35,163 @@
     border-width: var(--stroke);
     border-style: solid;
     border-color: transparent;
-    border-radius: 20%;
+    border-radius: var(--cap-radius);
 }
 
-.arrow[data-slope="horizontal"] {
+.arrow {
+    border-width: var(--stroke);
+
     .cap {
-        top: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-        transform-origin: center center;
-        transform: rotate(45deg);
-    }
-    
-    &[data-start*='top']{
-        border-top-color:black; 
-    }
-    &[data-start*='bottom'] {
-        border-bottom-color: black;
-    }
-    
+        --isCapInAxisX: calc(var(--isCapPointingLeft) + var(--isCapPointingRight));
+        --isCapInAxisY: calc(var(--isCapPointingUp) + var(--isCapPointingDown));
 
-    &[data-start*='left'] .cap[data-position="end"],
-    &[data-start*='right'] .cap[data-position="start"] {
-        right: calc(-1 * var(--stroke));
         border-top-color: black;
-        border-right-color: black;
+        border-left-color: black; 
+        transform-origin: 0 0;
+        transform:
+            translateX(calc(
+                (var(--isCapInLeft) * (var(--stroke) * (-0.45 - var(--isCapInAxisX)))) + 
+                (var(--isCapInRight) * (var(--endX) + (var(--stroke) * (var(--isCapInAxisX) + 0.45))))
+            ))
+            translateY(calc(
+                (var(--isCapInTop) * (var(--stroke) * (-0.45 - var(--isCapInAxisY)))) + 
+                (var(--isCapInBottom) * (var(--endY) - (var(--stroke) * (-0.45 - var(--isCapInAxisY)))))
+            ))
+            rotate(calc(
+                (var(--isCapPointingLeft) * -45deg) + 
+                (var(--isCapPointingRight) * 135deg) +
+                (var(--isCapPointingUp) * 45deg) +
+                (var(--isCapPointingDown) * 225deg) 
+            ))
+        ;
     }
-    &[data-start*='left'] .cap[data-position="start"],
-    &[data-start*='right'] .cap[data-position="end"] {
-        left: calc(-1 * var(--stroke));
-        border-bottom-color: black;
-        border-left-color: black;   
-    }    
-    
-    &[data-start*='bottom'] .cap{
-        top: unset;
-        bottom: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
+
+    &[data-slope="horizontal"] {    
+        &[data-start*='top']{
+            --isCapInTop: 1;
+            border-top-color: black;              
+        }
+        &[data-start*='bottom'] {
+            --isCapInBottom: 1;
+            border-bottom-color: black;            
+        }    
+        
+        &[data-start*='left'] .cap[data-position="end"],
+        &[data-start*='right'] .cap[data-position="start"] {
+            --isCapInRight: 1;
+            --isCapPointingRight: 1;            
+        }
+        &[data-start*='left'] .cap[data-position="start"],
+        &[data-start*='right'] .cap[data-position="end"] {
+            --isCapInLeft: 1;
+            --isCapPointingLeft: 1;
+        }    
+    }
+
+    &[data-slope="vertical"] { 
+        &[data-start*='left']{
+            --isCapInLeft: 1;
+            border-left-color: black;              
+        }
+        &[data-start*='right'] {
+            --isCapInRight: 1;
+            border-right-color: black;            
+        }    
+        
+        &[data-start*='left'] .cap[data-position="end"],
+        &[data-start*='right'] .cap[data-position="start"] {
+            --isCapInTop: 1;
+            --isCapPointingUp: 1;            
+        }
+        &[data-start*='left'] .cap[data-position="start"],
+        &[data-start*='right'] .cap[data-position="end"] {
+            --isCapInBottom: 1;
+            --isCapPointingDown: 1;
+        }    
+    }
+
+
+    &[data-slope="diagonal"] {
+        &[data-curve-type="concave"]{
+            &[data-start*='top'][data-start*="left"],
+            &[data-start*='bottom'][data-start*="right"]{
+                border-left-color: black; 
+                border-bottom-color: black;
+                border-radius: 0 0 0 100%;    
+            }
+            &[data-start*='top'][data-start*="left"] .cap[data-position="end"],
+            &[data-start*='bottom'][data-start*="right"] .cap[data-position="start"] {
+                --isCapInBottom: 1;
+                --isCapInRight: 1;
+                --isCapPointingRight: 1;
+            }
+            &[data-start*='top'][data-start*="left"] .cap[data-position="start"],
+            &[data-start*='bottom'][data-start*="right"] .cap[data-position="end"] {
+                --isCapInTop: 1;
+                --isCapInLeft: 1;
+                --isCapPointingUp: 1;
+            }
+
+            &[data-start*='bottom'][data-start*="left"],
+            &[data-start*='top'][data-start*="right"]{
+                border-bottom-color: black; 
+                border-right-color: black;
+                border-radius:  0 0 100% 0;    
+            }
+            &[data-start*='bottom'][data-start*="left"] .cap[data-position="end"],
+            &[data-start*='top'][data-start*="right"] .cap[data-position="start"] {
+                --isCapInTop: 1;
+                --isCapInRight: 1;
+                --isCapPointingUp: 1;
+            }
+            &[data-start*='bottom'][data-start*="left"] .cap[data-position="start"],
+            &[data-start*='top'][data-start*="right"] .cap[data-position="end"] {
+                --isCapInBottom: 1;
+                --isCapInLeft: 1;
+                --isCapPointingLeft: 1;
+            }
+
+        }
+
+        &[data-curve-type="convex"]{
+            &[data-start*='top'][data-start*="left"],
+            &[data-start*='bottom'][data-start*="right"]{
+                border-top-color: black; 
+                border-right-color: black;
+                border-radius: 0 100% 0 0;  
+            }
+            &[data-start*='top'][data-start*="left"] .cap[data-position="end"],
+            &[data-start*='bottom'][data-start*="right"] .cap[data-position="start"] {
+                --isCapInBottom: 1;
+                --isCapInRight: 1;
+                --isCapPointingDown: 1;
+            }
+            &[data-start*='top'][data-start*="left"] .cap[data-position="start"],
+            &[data-start*='bottom'][data-start*="right"] .cap[data-position="end"] {
+                --isCapInTop: 1;
+                --isCapInLeft: 1;
+                --isCapPointingLeft: 1;
+            }
+
+            &[data-start*='bottom'][data-start*="left"],
+            &[data-start*='top'][data-start*="right"]{
+                border-top-color: black; 
+                border-left-color: black;
+                border-radius:  100% 0 0 0;    
+            }
+            &[data-start*='bottom'][data-start*="left"] .cap[data-position="end"],
+            &[data-start*='top'][data-start*="right"] .cap[data-position="start"] {
+                --isCapInTop: 1;
+                --isCapInRight: 1;
+                --isCapPointingRight: 1;
+            }
+            &[data-start*='bottom'][data-start*="left"] .cap[data-position="start"],
+            &[data-start*='top'][data-start*="right"] .cap[data-position="end"] {
+                --isCapInBottom: 1;
+                --isCapInLeft: 1;
+                --isCapPointingDown: 1;
+            }
+
+        }
     }
 }
-
-.arrow[data-slope="vertical"] {
-    .cap {
-        left: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-        transform-origin: center center;
-        transform: rotate(-45deg);
-        // border: var(--stroke) solid red;
-    }
-    
-    &[data-start*='left']{
-         border-left-color:black; 
-    }
-    &[data-start*='right'] {
-         border-right-color: black;
-    }
-    
-
-    &[data-start*='top'] .cap[data-position="end"],
-    &[data-start*='bottom'] .cap[data-position="start"] {
-        bottom: calc(-1 * var(--stroke));
-        border-bottom-color: black;
-        border-left-color: black;
-    }
-    &[data-start*='top'] .cap[data-position="start"],
-    &[data-start*='bottom'] .cap[data-position="end"] {
-        top: calc(-1 * var(--stroke));
-        border-top-color: black;
-        border-right-color: black;   
-    }    
-    
-    &[data-start*='right'] .cap{
-        left: unset;
-        right: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-    }
-}
-
-.arrow[data-slope="diagonal"] {
-    
-
-    &[data-curve-type="concave"]{
-        .cap {
-            right: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-            bottom: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-            transform-origin: center center;
-            transform: rotate(45deg);
-            // border: var(--stroke) solid red;
-        }
-        &[data-start*='top'][data-start*="left"],
-        &[data-start*='bottom'][data-start*="right"]{
-            border-left-color: black; 
-            border-bottom-color: black;
-            border-radius: 0 0 0 100%;    
-        }
-
-        &[data-start*='top'][data-start*="left"] .cap[data-position="end"],
-        &[data-start*='bottom'][data-start*="right"] .cap[data-position="start"] {
-            // bottom:0;
-            right: calc(-1 * var(--stroke));
-            border-top-color: black;
-            border-right-color: black;
-        }
-        &[data-start*='top'][data-start*="left"] .cap[data-position="start"],
-        &[data-start*='bottom'][data-start*="right"] .cap[data-position="end"] {
-            top: calc( (var(--stroke) / 2) * -0.99);
-            left:calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-        
-            border-top-color: black;
-            border-left-color: black;
-        }
-
-        &[data-start*='bottom'][data-start*="left"],
-        &[data-start*='top'][data-start*="right"]{
-            border-bottom-color: black; 
-            border-right-color: black;
-            border-radius:  0 0 100% 0;    
-        }
-        &[data-start*='bottom'][data-start*="left"] .cap[data-position="end"],
-        &[data-start*='top'][data-start*="right"] .cap[data-position="start"] {
-            top:calc(-1 * var(--stroke));
-            right:calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-            border-top-color: black;
-            border-left-color: black;
-        }
-        &[data-start*='bottom'][data-start*="left"] .cap[data-position="start"],
-        &[data-start*='top'][data-start*="right"] .cap[data-position="end"] {
-            bottom: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-            left:calc(-1 * var(--stroke));
-        
-            border-bottom-color: black;
-            border-left-color: black;
-        }
-
-    }
-
-    &[data-curve-type="convex"]{
-        .cap {
-            right: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-            bottom: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-            transform-origin: center center;
-            transform: rotate(45deg);
-            // border: var(--stroke) solid red;
-        }
-        &[data-start*='top'][data-start*="left"],
-        &[data-start*='bottom'][data-start*="right"]{
-            border-top-color: black; 
-            border-right-color: black;
-            border-radius: 0 100% 0 0;    
-        }
-        &[data-start*='top'][data-start*="left"] .cap[data-position="end"],
-        &[data-start*='bottom'][data-start*="right"] .cap[data-position="start"] {
-            bottom: calc(-1 * var(--stroke));
-            right: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-
-            border-bottom-color: black;
-            border-right-color: black;
-        }
-        &[data-start*='top'][data-start*="left"] .cap[data-position="start"],
-        &[data-start*='bottom'][data-start*="right"] .cap[data-position="end"] {
-            left: calc(-1 * var(--stroke));
-            top: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-        
-            border-bottom-color: black;
-            border-left-color: black;
-        }
-
-        &[data-start*='bottom'][data-start*="left"],
-        &[data-start*='top'][data-start*="right"]{
-            border-top-color: black; 
-            border-left-color: black;
-            border-radius:  100% 0 0 0 ;    
-        }
-        &[data-start*='bottom'][data-start*="left"] .cap[data-position="end"],
-        &[data-start*='top'][data-start*="right"] .cap[data-position="start"] {
-            right: calc(-1 * var(--stroke));
-            top: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);
-
-            border-top-color: black;
-            border-right-color: black;
-        }
-        &[data-start*='bottom'][data-start*="left"] .cap[data-position="start"],
-        &[data-start*='top'][data-start*="right"] .cap[data-position="end"] {
-            bottom: calc(-1 * var(--stroke));
-            left: calc( ((var(--cap-size) / 2)    +   (var(--stroke) / 2)) * -0.99);        
-            border-bottom-color: black;
-            border-right-color: black;
-        }
-    }   
-}
-
-
-
-
-
