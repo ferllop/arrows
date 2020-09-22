@@ -31,6 +31,21 @@
 .cap {
     --isCapInAxisX: calc(var(--isCapPointingLeft) + var(--isCapPointingRight));
     --isCapInAxisY: calc(var(--isCapPointingUp) + var(--isCapPointingDown));
+    --translateX: calc(
+        (var(--isCapInLeft) * (var(--stroke) * (-0.45 - var(--isCapInAxisX)))) + 
+        (var(--isCapInRight) * (var(--endX) + (var(--stroke) * (var(--isCapInAxisX) + 0.45))))
+    );
+    --translateY: calc(
+        (var(--isCapInTop) * (var(--stroke) * (-0.45 - var(--isCapInAxisY)))) + 
+        (var(--isCapInBottom) * (var(--endY) - (var(--stroke) * (-0.45 - var(--isCapInAxisY)))))
+    );
+    --rotate: calc(
+        (var(--isCapPointingLeft) * -45deg) + 
+        (var(--isCapPointingRight) * 135deg) +
+        (var(--isCapPointingUp) * 45deg) +
+        (var(--isCapPointingDown) * 225deg) 
+    );
+    --rotateCorrection: 0deg;
     position: absolute;
     width: var(--cap-size);
     height: var(--cap-size);
@@ -40,22 +55,10 @@
     border-bottom-color: transparent;
     border-right-color: transparent; 
     transform-origin: 0 0;
-    transform:
-        translateX(calc(
-            (var(--isCapInLeft) * (var(--stroke) * (-0.45 - var(--isCapInAxisX)))) + 
-            (var(--isCapInRight) * (var(--endX) + (var(--stroke) * (var(--isCapInAxisX) + 0.45))))
-        ))
-        translateY(calc(
-            (var(--isCapInTop) * (var(--stroke) * (-0.45 - var(--isCapInAxisY)))) + 
-            (var(--isCapInBottom) * (var(--endY) - (var(--stroke) * (-0.45 - var(--isCapInAxisY)))))
-        ))
-        rotate(calc(
-            (var(--isCapPointingLeft) * -45deg) + 
-            (var(--isCapPointingRight) * 135deg) +
-            (var(--isCapPointingUp) * 45deg) +
-            (var(--isCapPointingDown) * 225deg) 
-        ))
-    ;
+    transform: 
+        translateX(var(--translateX)) 
+        translateY(var(--translateY))
+        rotate(calc(var(--rotate) + var(--rotateCorrection)));
 }
 
 .arrow {
@@ -103,7 +106,7 @@
         }    
     }
 
-    &[data-slope="diagonal"] {
+    &[data-slope="diagonal"]{ 
         &[data-curve-type="concave"]{
             &[data-start*='top'][data-start*="left"],
             &[data-start*='bottom'][data-start*="right"]{
@@ -122,6 +125,7 @@
                 --isCapInTop: 1;
                 --isCapInLeft: 1;
                 --isCapPointingUp: 1;
+                --rotateCorrection: -5deg;
             }
 
             &[data-start*='bottom'][data-start*="left"],
@@ -135,6 +139,7 @@
                 --isCapInTop: 1;
                 --isCapInRight: 1;
                 --isCapPointingUp: 1;
+                --rotateCorrection: 5deg;
             }
             &[data-start*='bottom'][data-start*="left"] .cap[data-position="start"],
             &[data-start*='top'][data-start*="right"] .cap[data-position="end"] {
@@ -156,6 +161,7 @@
                 --isCapInBottom: 1;
                 --isCapInRight: 1;
                 --isCapPointingDown: 1;
+                --rotateCorrection: -5deg;
             }
             &[data-start*='top'][data-start*="left"] .cap[data-position="start"],
             &[data-start*='bottom'][data-start*="right"] .cap[data-position="end"] {
@@ -181,6 +187,7 @@
                 --isCapInBottom: 1;
                 --isCapInLeft: 1;
                 --isCapPointingDown: 1;
+                --rotateCorrection: 5deg;
             }
         }
     }
