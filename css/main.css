@@ -1,4 +1,4 @@
-.arrow {
+.arrowscss {
   font-size: 14px;
   color: black;
   --endX: 20em;
@@ -23,7 +23,7 @@
   --isCapPointingRight: 0;
 }
 
-.arrow * {
+.arrowscss * {
   box-sizing: border-box;
 }
 
@@ -57,97 +57,97 @@
   transform: translateX(var(--translateX)) translateY(var(--translateY)) rotate(calc(var(--rotate) + var(--rotateCorrection)));
 }
 
-.arrow[data-slope=horizontal][data-start*=top] {
+.arrowscss[data-slope=horizontal][data-start*=top] {
   --isCapInTop: 1;
   border-top-color: inherit;
 }
-.arrow[data-slope=horizontal][data-start*=bottom] {
+.arrowscss[data-slope=horizontal][data-start*=bottom] {
   --isCapInBottom: 1;
   border-bottom-color: inherit;
 }
-.arrow[data-slope=horizontal][data-start*=left] .cap[data-position=end], .arrow[data-slope=horizontal][data-start*=right] .cap[data-position=start] {
+.arrowscss[data-slope=horizontal][data-start*=left] .cap[data-position=end], .arrowscss[data-slope=horizontal][data-start*=right] .cap[data-position=start] {
   --isCapInRight: 1;
   --isCapPointingRight: 1;
 }
-.arrow[data-slope=horizontal][data-start*=left] .cap[data-position=start], .arrow[data-slope=horizontal][data-start*=right] .cap[data-position=end] {
+.arrowscss[data-slope=horizontal][data-start*=left] .cap[data-position=start], .arrowscss[data-slope=horizontal][data-start*=right] .cap[data-position=end] {
   --isCapInLeft: 1;
   --isCapPointingLeft: 1;
 }
-.arrow[data-slope=vertical][data-start*=left] {
+.arrowscss[data-slope=vertical][data-start*=left] {
   --isCapInLeft: 1;
   border-left-color: inherit;
 }
-.arrow[data-slope=vertical][data-start*=right] {
+.arrowscss[data-slope=vertical][data-start*=right] {
   --isCapInRight: 1;
   border-right-color: inherit;
 }
-.arrow[data-slope=vertical][data-start*=left] .cap[data-position=end], .arrow[data-slope=vertical][data-start*=right] .cap[data-position=start] {
+.arrowscss[data-slope=vertical][data-start*=left] .cap[data-position=end], .arrowscss[data-slope=vertical][data-start*=right] .cap[data-position=start] {
   --isCapInTop: 1;
   --isCapPointingUp: 1;
 }
-.arrow[data-slope=vertical][data-start*=left] .cap[data-position=start], .arrow[data-slope=vertical][data-start*=right] .cap[data-position=end] {
+.arrowscss[data-slope=vertical][data-start*=left] .cap[data-position=start], .arrowscss[data-slope=vertical][data-start*=right] .cap[data-position=end] {
   --isCapInBottom: 1;
   --isCapPointingDown: 1;
 }
-.arrow[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=left], .arrow[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=right] {
+.arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=left], .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=right] {
   border-left-color: inherit;
   border-bottom-color: inherit;
   border-radius: 0 0 0 100%;
 }
-.arrow[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=left] .cap[data-position=end], .arrow[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=right] .cap[data-position=start] {
+.arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=left] .cap[data-position=end], .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=right] .cap[data-position=start] {
   --isCapInBottom: 1;
   --isCapInRight: 1;
   --isCapPointingRight: 1;
 }
-.arrow[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=left] .cap[data-position=start], .arrow[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=right] .cap[data-position=end] {
+.arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=left] .cap[data-position=start], .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=right] .cap[data-position=end] {
   --isCapInTop: 1;
   --isCapInLeft: 1;
   --isCapPointingUp: 1;
   --rotateCorrection: -5deg;
 }
-.arrow[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=left], .arrow[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=right] {
+.arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=left], .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=right] {
   border-bottom-color: inherit;
   border-right-color: inherit;
   border-radius: 0 0 100% 0;
 }
-.arrow[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=left] .cap[data-position=end], .arrow[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=right] .cap[data-position=start] {
+.arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=left] .cap[data-position=end], .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=right] .cap[data-position=start] {
   --isCapInTop: 1;
   --isCapInRight: 1;
   --isCapPointingUp: 1;
   --rotateCorrection: 5deg;
 }
-.arrow[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=left] .cap[data-position=start], .arrow[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=right] .cap[data-position=end] {
+.arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=left] .cap[data-position=start], .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=right] .cap[data-position=end] {
   --isCapInBottom: 1;
   --isCapInLeft: 1;
   --isCapPointingLeft: 1;
 }
-.arrow[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=left], .arrow[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=right] {
+.arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=left], .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=right] {
   border-top-color: inherit;
   border-right-color: inherit;
   border-radius: 0 100% 0 0;
 }
-.arrow[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=left] .cap[data-position=end], .arrow[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=right] .cap[data-position=start] {
+.arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=left] .cap[data-position=end], .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=right] .cap[data-position=start] {
   --isCapInBottom: 1;
   --isCapInRight: 1;
   --isCapPointingDown: 1;
   --rotateCorrection: -5deg;
 }
-.arrow[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=left] .cap[data-position=start], .arrow[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=right] .cap[data-position=end] {
+.arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=left] .cap[data-position=start], .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=right] .cap[data-position=end] {
   --isCapInTop: 1;
   --isCapInLeft: 1;
   --isCapPointingLeft: 1;
 }
-.arrow[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=left], .arrow[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=right] {
+.arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=left], .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=right] {
   border-top-color: inherit;
   border-left-color: inherit;
   border-radius: 100% 0 0 0;
 }
-.arrow[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=left] .cap[data-position=end], .arrow[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=right] .cap[data-position=start] {
+.arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=left] .cap[data-position=end], .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=right] .cap[data-position=start] {
   --isCapInTop: 1;
   --isCapInRight: 1;
   --isCapPointingRight: 1;
 }
-.arrow[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=left] .cap[data-position=start], .arrow[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=right] .cap[data-position=end] {
+.arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=left] .cap[data-position=start], .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=right] .cap[data-position=end] {
   --isCapInBottom: 1;
   --isCapInLeft: 1;
   --isCapPointingDown: 1;

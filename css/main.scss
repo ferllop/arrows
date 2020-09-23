@@ -1,4 +1,4 @@
-.arrow {
+.arrowscss {
     font-size: 14px;
     color: black;
     --endX: 20em;
@@ -24,7 +24,7 @@
     --isCapPointingRight: 0;
 }
 
-.arrow * {
+.arrowscss * {
     box-sizing: border-box;
 }
 
@@ -61,7 +61,7 @@
         rotate(calc(var(--rotate) + var(--rotateCorrection)));
 }
 
-.arrow {
+.arrowscss {
     &[data-slope="horizontal"] {    
         &[data-start*='top']{
             --isCapInTop: 1;
