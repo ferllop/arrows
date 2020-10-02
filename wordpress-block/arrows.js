@@ -15,8 +15,7 @@
                     'data-slope': attributes.arrowSlope,
                     'data-curve-type': attributes.arrowCurve,
                     style: {
-                        top: attributes.wrapperTop + '%',
-                        left: attributes.wrapperLeft + '%',
+                        transform: `translateY(${attributes.wrapperTop}%) translateX(${attributes.wrapperLeft}%)`,
                         height: attributes.wrapperHeight + '%',
                         width: attributes.wrapperWidth + '%',
                         '--cap-size': attributes.capSize + 'em',
@@ -59,21 +58,21 @@
                 }, [
                     el(InspectorControls, {}, [
                         el(TextControl, {
-                            value: attributes.from,
+                            value: attributes.arrowFrom,
                             label: 'From',
                             onChange: value => {
                                 setAttributes({ arrowFrom: value })
                             }
                         }),
                         el(TextControl, {
-                            value: attributes.slope,
+                            value: attributes.arrowSlope,
                             label: 'Slope',
                             onChange: value => {
                                 setAttributes({ arrowSlope: value })
                             }
                         }),
                         el(TextControl, {
-                            value: attributes.curve,
+                            value: attributes.arrowCurve,
                             label: 'Curve',
                             onChange: value => {
                                 setAttributes({ arrowCurve: value })
@@ -124,8 +123,8 @@
                             value: attributes.capSize,
                             label: 'Cap size',
                             min: 0,
-                            max: 50,
-                            step: 0.5,
+                            max: 10,
+                            step: 0.25,
                             onChange: value => setAttributes({ capSize: value })
                         }),
                         el(RangeControl, {
