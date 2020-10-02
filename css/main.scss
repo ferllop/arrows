@@ -66,6 +66,17 @@
         translateX(var(--translateX)) 
         translateY(var(--translateY))
         rotate(calc(var(--rotate) + var(--rotateCorrection)));
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            border-style: solid;
+            border-color: inherit;
+            border-width: calc(var(--stroke) / 2);
+            top: calc(-1 * var(--stroke) / 4);
+            left: calc(-1 * var(--stroke) / 4);
+        }
 }
 
 .arrowscss {
