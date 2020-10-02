@@ -121,9 +121,8 @@
         &[data-curve-type="concave"]{
             &[data-start*='top'][data-start*="left"],
             &[data-start*='bottom'][data-start*="right"]{
-                border-left-color: inherit; 
                 border-bottom-color: inherit;
-                border-radius: 0 0 0 100%;    
+                border-radius: 0 100%;    
                 
             }
             &[data-start*='top'][data-start*="left"] .cap[data-position="end"],
@@ -148,8 +147,7 @@
             &[data-start*='bottom'][data-start*="left"],
             &[data-start*='top'][data-start*="right"]{
                 border-bottom-color: inherit; 
-                border-right-color: inherit;
-                border-radius:  0 0 100% 0;    
+                border-radius:  100% 0;    
             }
             &[data-start*='bottom'][data-start*="left"] .cap[data-position="end"],
             &[data-start*='top'][data-start*="right"] .cap[data-position="start"] {
@@ -174,8 +172,7 @@
             &[data-start*='top'][data-start*="left"],
             &[data-start*='bottom'][data-start*="right"]{
                 border-top-color: inherit; 
-                border-right-color: inherit;
-                border-radius: 0 100% 0 0;  
+                border-radius: 0 100%;  
             }
             &[data-start*='top'][data-start*="left"] .cap[data-position="end"],
             &[data-start*='bottom'][data-start*="right"] .cap[data-position="start"] {
@@ -198,8 +195,7 @@
             &[data-start*='bottom'][data-start*="left"],
             &[data-start*='top'][data-start*="right"]{
                 border-top-color: inherit; 
-                border-left-color: inherit;
-                border-radius:  100% 0 0 0;    
+                border-radius:  100% 0;    
             }
             &[data-start*='bottom'][data-start*="left"] .cap[data-position="end"],
             &[data-start*='top'][data-start*="right"] .cap[data-position="start"] {
