@@ -11,7 +11,7 @@
   --endX: 100%;
   --endY: 100%;
   --cap-size: 4em;
-  --stroke: .7em;
+  --stroke: 0.7em;
   --cap-radius: 0.3em;
   position: relative;
   width: var(--endX);
@@ -37,18 +37,22 @@
   --isCapInAxisX: calc(var(--isCapPointingLeft) + var(--isCapPointingRight));
   --isCapInAxisY: calc(var(--isCapPointingUp) + var(--isCapPointingDown));
   --translateX: calc(
-      (var(--isCapInLeft) * (var(--stroke) * (-0.45 - var(--isCapInAxisX)))) +
-      (var(--isCapInRight) * (var(--endX) + (var(--stroke) * (var(--isCapInAxisX) + 0.45))))
+    (var(--isCapInLeft) * (var(--stroke) * (-0.55 - var(--isCapInAxisX)))) +
+      (
+        var(--isCapInRight) *
+          (var(--endX) + (var(--stroke) * (var(--isCapInAxisX) + 0.55)))
+      )
   );
   --translateY: calc(
-      (var(--isCapInTop) * (var(--stroke) * (-0.45 - var(--isCapInAxisY)))) +
-      (var(--isCapInBottom) * (var(--endY) - (var(--stroke) * (-0.45 - var(--isCapInAxisY)))))
+    (var(--isCapInTop) * (var(--stroke) * (-0.55 - var(--isCapInAxisY)))) +
+      (
+        var(--isCapInBottom) *
+          (var(--endY) - (var(--stroke) * (-0.55 - var(--isCapInAxisY))))
+      )
   );
   --rotate: calc(
-      (var(--isCapPointingLeft) * -45deg) +
-      (var(--isCapPointingRight) * 135deg) +
-      (var(--isCapPointingUp) * 45deg) +
-      (var(--isCapPointingDown) * 225deg)
+    (var(--isCapPointingLeft) * -45deg) + (var(--isCapPointingRight) * 135deg) +
+      (var(--isCapPointingUp) * 45deg) + (var(--isCapPointingDown) * 225deg)
   );
   --rotateCorrection: 0deg;
   position: absolute;
@@ -81,6 +85,9 @@
   --isCapInBottom: 1;
   border-bottom-color: inherit;
 }
+.arrowscss[data-slope=horizontal][data-start*=bottom] .cap {
+  bottom: 0;
+}
 .arrowscss[data-slope=horizontal][data-start*=left] .cap[data-position=end], .arrowscss[data-slope=horizontal][data-start*=right] .cap[data-position=start] {
   --isCapInRight: 1;
   --isCapPointingRight: 1;
@@ -99,6 +106,9 @@
   --isCapInRight: 1;
   border-right-color: inherit;
 }
+.arrowscss[data-slope=vertical][data-start*=right] .cap {
+  right: 0;
+}
 .arrowscss[data-slope=vertical][data-start*=left] .cap[data-position=end], .arrowscss[data-slope=vertical][data-start*=right] .cap[data-position=start] {
   --isCapInTop: 1;
   --isCapPointingUp: 1;
@@ -110,6 +120,7 @@
   bottom: 0;
 }
 .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=left], .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=right] {
+  border-left-color: inherit;
   border-bottom-color: inherit;
   border-radius: 0 100%;
 }
@@ -129,6 +140,7 @@
   left: 0;
 }
 .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=bottom][data-start*=left], .arrowscss[data-slope=diagonal][data-curve-type=concave][data-start*=top][data-start*=right] {
+  border-right-color: inherit;
   border-bottom-color: inherit;
   border-radius: 100% 0;
 }
@@ -148,6 +160,7 @@
   left: 0;
 }
 .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=left], .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=right] {
+  border-right-color: inherit;
   border-top-color: inherit;
   border-radius: 0 100%;
 }
@@ -167,6 +180,7 @@
   left: 0;
 }
 .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=bottom][data-start*=left], .arrowscss[data-slope=diagonal][data-curve-type=convex][data-start*=top][data-start*=right] {
+  border-left-color: inherit;
   border-top-color: inherit;
   border-radius: 100% 0;
 }
