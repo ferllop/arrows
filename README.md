@@ -2,7 +2,7 @@
 Draw arrows using the borders of an empty div.
 Specify the corner of the box which is the origin, the slope of the line and where the cap is
 
-Note: if you use it as a wordpress block, in this repo it's named as "djmarian/arrows". If you change it, remember to change alse in the first selector of the css file.
+Note: if you use it as a wordpress block, in this repo it's named as "ferllop/arrows". If you change it, remember to change alse in the first selector of the css file.
 
 ## Div class arrow
 Attributes:

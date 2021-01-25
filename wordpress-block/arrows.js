@@ -28,12 +28,11 @@
         )
     }
 
-    registerBlockType('djmarian/arrows', {
-        title: __('Arrows', 'djmarian'),
-        description: __('Render arrows', 'djmarian'),
+    registerBlockType('ferllop/arrows', {
+        title: __('Arrows', 'arrows'),
+        description: __('Render arrows', 'arrows'),
         icon: 'arrow-down-alt',
         category: 'widgets',
-        // parent: ['core/column'],
         attributes: {
             wrapperTop: { default: 0 },
             wrapperLeft: { default: 0 },
@@ -145,7 +144,4 @@
     })
 
 })()
-
-
-
 

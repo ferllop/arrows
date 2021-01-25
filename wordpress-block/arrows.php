@@ -1,6 +1,6 @@
 <?php
-add_action( 'init', 'djmarian_register_block_arrows');
-function djmarian_register_block_arrows() {
+add_action( 'init', 'ferllop_register_block_arrows');
+function ferllop_register_block_arrows() {
     if ( ! is_gutenberg_active() ) {
         return;
     }
@@ -27,7 +27,7 @@ function djmarian_register_block_arrows() {
         ]
     );
 
-    register_block_type( 'djmarian/arrows', [
+    register_block_type( 'ferllop/arrows', [
         'editor_script' => $block_name,
         'editor_style' => $block_name,
         'style' => $block_name
