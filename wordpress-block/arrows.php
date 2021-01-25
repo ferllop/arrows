@@ -8,8 +8,8 @@ function djmarian_register_block_arrows() {
     $block_name = 'arrows';
 
     wp_register_script( 
-        $block_name, 
-        get_theme_file_uri() . '/blocks/arrows/wordpress-block/arrows.js', 
+        $block_name,
+        plugins_url( 'arrows.js', __FILE__ ),
         [
             'wp-blocks',
             'wp-i18n',
@@ -21,7 +21,7 @@ function djmarian_register_block_arrows() {
 
     wp_register_style( 
         $block_name,
-        get_theme_file_uri() . '/blocks/arrows/css/main.css', 
+        plugin_dir_url( __DIR__ ) . 'css/main.css', 
         [ 
             'wp-edit-blocks' 
         ]
