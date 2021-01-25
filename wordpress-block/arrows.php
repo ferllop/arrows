@@ -41,7 +41,3 @@ if (! function_exists('is_gutenberg_active')){
     }
 }
 
-function test_djmarian_register_block_arrows(){
-    echo 'Directorio: ' . get_theme_file_uri();
-}
-
