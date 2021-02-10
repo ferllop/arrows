@@ -2,7 +2,17 @@
 Draw arrows using the borders of an empty div.
 Specify the corner of the box which is the origin, the slope of the line and where the cap is
 
-Note: if you use it as a wordpress block, in this repo it's named as "ferllop/arrows". If you change it, remember to change alse in the first selector of the css file.
+Example:
+```
+<div class="arrowscss" data-start="top-left" data-slope="diagonal" data-curve-type="concave">
+    <div class="cap" data-position="end"></div>
+</div>
+```
+Will draw this:
+<img src="example.png" alt="an example of an arrow" />
+
+Note: if you use it as a wordpress block, in this repo it's named as "ferllop/arrows". 
+If you change it, remember to change also in the first selector of the css file.
 
 ## Div class arrow
 Attributes:
