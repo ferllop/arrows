@@ -6,102 +6,131 @@
     <title>arrows</title>
     <link rel="stylesheet" href="css/main.css">
     <style>
+        :root {
+            --width: 300px;
+            --height: 200px;
+        }
+
+        h2 {
+            position: sticky;
+            top: 0px;
+            background: white;
+            z-index: 1;
+        }
+
         .arrowscss {
-            width: 300px;
-            height: 200px;
+            width: var(--width);
+            height: var(--height);
             margin-bottom: 10em;
         }
 
         .arrowscss::after {
             content: '';
             display: block;
-            width: 300px;
-            height: 200px;
+            width: var(--width);
+            height: var(--height);
             border: 1px solid blue;
+        }
+
+        .cap[data-position="start"] {
+            --cap-color: green;
+        }
+
+        .cap[data-position="end"] {
+            --cap-color: red;
         }
     </style>
 </head>
 
 <body>
-    <h2>top-left concave. Cap on End</h2>
+    <h1>Arrows</h1>
+    <p>Starting cap is green</p>
+    <p>Ending cap is red</p>
+    <br />
+
+    <h2>Concave</h2>
+    <h3>Starts on top-left corner:</h3>
     <div class="arrowscss" data-start="top-left" data-slope="diagonal" data-curve-type="concave">
-        <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
+        <div class="cap" data-position="end"></div>
     </div>
-    <h2>top-right concave. Cap on End</h2>
+    <h3>Starts on top-right corner:</h3>
     <div class="arrowscss" data-start="top-right" data-slope="diagonal" data-curve-type="concave">
-        <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
+        <div class="cap" data-position="end"></div>
     </div>
-    <h2>bottom-left concave. Cap on End</h2>
+    <h3>Starts on bottom-left corner:</h3>
     <div class="arrowscss" data-start="bottom-left" data-slope="diagonal" data-curve-type="concave">
-        <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
+        <div class="cap" data-position="end"></div>
     </div>
-    <h2>bottom-right concave. Cap on End</h2>
+    <h3>Starts on bottom-right corner:</h3>
     <div class="arrowscss" data-start="bottom-right" data-slope="diagonal" data-curve-type="concave">
-        <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
+        <div class="cap" data-position="end"></div>
     </div>
 
-    <h2>top-left convex. Cap on End</h2>
+    <h2>Convex</h2>
+    <h3>Starts on Starts on top-left corner:</h3>
     <div class="arrowscss" data-start="top-left" data-slope="diagonal" data-curve-type="convex">
-        <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
+        <div class="cap" data-position="end"></div>
     </div>
-    <h2>top-right convex. Cap on End</h2>
+    <h3>Starts on top-right corner:</h3>
     <div class="arrowscss" data-start="top-right" data-slope="diagonal" data-curve-type="convex">
-        <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
+        <div class="cap" data-position="end"></div>
     </div>
-    <h2>bottom-left convex. Cap on End</h2>
+    <h3>Starts on bottom-left corner:</h3>
     <div class="arrowscss" data-start="bottom-left" data-slope="diagonal" data-curve-type="convex">
-        <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
+        <div class="cap" data-position="end"></div>
     </div>
-    <h2>bottom-right convex. Cap on End</h2>
+    <h3>Starts on bottom-right corner:</h3>
     <div class="arrowscss" data-start="bottom-right" data-slope="diagonal" data-curve-type="convex">
-        <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
+        <div class="cap" data-position="end"></div>
     </div>
 
-    <h2>top-left vertical. Cap on End</h2>
+    <h2>Vertical</h2>
+    <h3>Starts on top-left corner:</h3>
     <div class="arrowscss" data-start="top-left" data-slope="vertical" data-curve-type="">
         <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
     </div>
-    <h2>top-right vertical. Cap on End</h2>
+    <h3>Starts on top-right corner:</h3>
     <div class="arrowscss" data-start="top-right" data-slope="vertical" data-curve-type="">
         <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
     </div>
-    <h2>bottom-left vertical. Cap on End</h2>
+    <h3>Starts on bottom-left corner:</h3>
     <div class="arrowscss" data-start="bottom-left" data-slope="vertical" data-curve-type="">
         <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
     </div>
-    <h2>bottom-right vertical. Cap on End</h2>
+    <h3>Starts on bottom-right corner:</h3>
     <div class="arrowscss" data-start="bottom-right" data-slope="vertical" data-curve-type="">
         <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
     </div>
 
-    <h2>top-left horizontal. Cap on End</h2>
+    <h2>Horizontal</h2>
+    <h3>Starts on top-left corner:</h3>
     <div class="arrowscss" data-start="top-left" data-slope="horizontal" data-curve-type="">
         <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
     </div>
-    <h2>top-right horizontal. Cap on End</h2>
+    <h3>Starts on top-right corner:</h3>
     <div class="arrowscss" data-start="top-right" data-slope="horizontal" data-curve-type="">
         <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
     </div>
-    <h2>bottom-left horizontal. Cap on End</h2>
+    <h3>Starts on bottom-left corner:</h3>
     <div class="arrowscss" data-start="bottom-left" data-slope="horizontal" data-curve-type="">
         <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
     </div>
-    <h2>bottom-right horizontal. Cap on End</h2>
+    <h3>Starts on bottom-right corner:</h3>
     <div class="arrowscss" data-start="bottom-right" data-slope="horizontal" data-curve-type="">
         <div class="cap" data-position="end"></div>
         <div class="cap" data-position="start"></div>
